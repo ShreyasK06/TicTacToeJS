@@ -1,0 +1,64 @@
+.cell {
+    width: 75px;
+    height: 75px;
+    border: 2px solid;
+    box-shadow: 0 0 0 2px;
+    line-height: 75px;
+    font-size: 50px;
+    cursor: pointer;
+
+}
+
+body {
+    text-align: center;
+    font-family: "Permenant", cursive;
+}
+
+a {
+    color: black;
+}
+
+h1 {
+    width: 600px;
+    border: 6px solid black;
+    border-radius: 10px;
+    margin-left: 25%;
+    color: black;
+}
+
+
+button :active {
+    background-color: rebeccapurple;
+}
+
+
+
+#game {
+    background-color: dodgerblue;
+}
+
+#gameContainer {
+    font-family: "Permanent Marker", cursive;
+    text-align: center;
+}
+
+#cellContainer {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 225px;
+    margin: auto;
+}
+
+#restartBtn {
+    cursor: pointer;
+    font: bold;
+    font-family: "Permanent Marker", cursive;
+    background-color: transparent;
+}
+
+#mode {
+    cursor: pointer;
+    font: bold;
+    font-family: "Permanent Marker", cursive;
+    background-color: transparent;
+}
