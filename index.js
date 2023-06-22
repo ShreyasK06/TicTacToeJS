@@ -27,6 +27,8 @@ let aiMove = 0;
 initializeGame();
 
 function initializeGame() {
+    gameType.innerText = "TWO PLAYER GAME";
+    console.log(gameType.innerText);
     cells.forEach(cell => cell.addEventListener("click", cellClicked));
     restartBtn.addEventListener("click", restartGame);
     winRecord.textContent = `${xWin} : ${yWin}`;

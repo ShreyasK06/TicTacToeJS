@@ -28,42 +28,73 @@ a {
 }
 
 h1 {
-    width: 600px;
+    width: 100vh;
     border: 6px solid black;
+    background-color: rgba(30, 144, 255, 0.8);
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 10px;
-    margin-left: 25%;
     color: black;
+    box-shadow: 0 10px 10px 10px rgba(255, 255, 255, 0.1);
+}
+
+h2 {
+    background-color: rgba(30, 144, 255, 0.8);
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+    box-shadow: 0 10px 10px 10px rgba(255, 255, 255, 0.1);
 }
 
 
-button :active {
-    background-color: rebeccapurple;
-}
 
+button:hover {
+    filter: brightness(160%);
+    box-shadow: 0 0.1 rgba(255, 255, 255, 0.65);
+    transform: translate(0, 0.3rem);
+}
 
 
 #gameContainer {
     font-family: Rubik, sans-serif;
     text-align: center;
+
 }
 
 #cellContainer {
     display: grid;
     grid-template-columns: repeat(3, auto);
-    width: 225px;
+    width: 240px;
     margin: auto;
+    background-color: rgba(30, 144, 255);
 }
 
 #restartBtn {
     cursor: pointer;
     font: bold;
     font-family: Rubik, sans-serif;
-    background-color: transparent;
+    background-color: rgba(30, 144, 255, 0.8);
 }
 
 #mode {
     cursor: pointer;
     font: bold;
     font-family: Rubik, sans-serif;
-    background-color: transparent;
+    background-color: rgba(30, 144, 255, 0.8);
+}
+
+#gameType {
+    border: 4px solid black;
+    width: 40vh;
+}
+
+#winRecord {
+    border: 4px solid black;
+    width: 10vh;
+}
+
+#statusText {
+    border: 4px solid black;
+    width: 20vh;
 }
