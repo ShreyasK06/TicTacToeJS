@@ -22,7 +22,7 @@ let running = false;
 let twoPlayerGame = true;
 let aiGame = false;
 let available = [];
-let aiMove = 0;
+let moves = 0;
 
 initializeGame();
 
@@ -67,6 +67,7 @@ function updateCell(cell, index) {
     options[index] = currentPlayer;
     cell.textContent = currentPlayer;
     console.log(currentPlayer + " moved on " + index);
+    moves++;
 }
 
 function changePlayer() {
@@ -102,29 +103,38 @@ function keyPressed() {
 
 function minimax(canMove, allOptions) {
     let board = allOptions;
-    let moves = [];
-    let opWin = false;
-    let myWin = false;
-    for (let i = 0; i < canMove.length; i++) {
-        board[canMove[i]] = "O";
-        if (win(board, "O")) {
-            board[canMove[i]] = "";
-            myWin = true;
-            return canMove[i];
-        } else {
-            board[canMove[i]] = "X";
-            if (win(board, "X")) {
+    if (moves == 1 && board[4] == "") {
+        return 4;
+    } else {
+        let moves = [];
+        let oWin = false;
+        let xMoveWin = [];
+        let opWin = false;
+        let myWin = false;
+        for (let i = 0; i < canMove.length; i++) {
+            board[canMove[i]] = "O";
+            if (win(board, "O")) {
                 board[canMove[i]] = "";
-                opWin = true;
+                myWin = true;
                 return canMove[i];
             } else {
-                board[canMove[i]] = "";
-                moves.push(canMove[i]);
+                board[canMove[i]] = "X";
+                if (win(board, "X")) {
+                    board[canMove[i]] = "";
+                    opWin = true;
+                    xMoveWin.push(canMove[i]);
+                } else {
+                    board[canMove[i]] = "";
+                    moves.push(canMove[i]);
+                }
             }
         }
-    }
-    if (!opWin && !myWin) {
-        return moves[Math.floor(Math.random() * moves.length)];
+        if (!myWin) {
+            return xMoveWin[Math.floor(Math.random() * xMoveWin.length)];
+        }
+        if (!opWin && !myWin) {
+            return moves[Math.floor(Math.random() * moves.length)];
+        }
     }
 }
 
