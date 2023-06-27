@@ -75,6 +75,7 @@ button:hover {
     font: bold;
     font-family: Rubik, sans-serif;
     background-color: rgba(30, 144, 255, 0.8);
+    border-radius: 10px;
 }
 
 #mode {
@@ -82,6 +83,7 @@ button:hover {
     font: bold;
     font-family: Rubik, sans-serif;
     background-color: rgba(30, 144, 255, 0.8);
+    border-radius: 10px;
 }
 
 #gameType {

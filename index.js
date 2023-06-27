@@ -22,7 +22,8 @@ let running = false;
 let twoPlayerGame = true;
 let aiGame = false;
 let available = [];
-let moves = 0;
+let avalMoves = 0;
+let count = 0;
 
 initializeGame();
 
@@ -66,8 +67,7 @@ function cellClicked() {
 function updateCell(cell, index) {
     options[index] = currentPlayer;
     cell.textContent = currentPlayer;
-    console.log(currentPlayer + " moved on " + index);
-    moves++;
+    avalMoves++;
 }
 
 function changePlayer() {
@@ -103,19 +103,30 @@ function keyPressed() {
 
 function minimax(canMove, allOptions) {
     let board = allOptions;
-    if (moves == 1 && board[4] == "") {
-        return 4;
+    if (avalMoves == 1) {
+        let mvs = [1, 3, 5, 7];
+        if (board[4] == "") {
+            board[4] == ""
+            avalMoves++;
+            return 4;
+        } else if (board[4] == 'X') {
+            return mvs[Math.floor(Math.random() * mvs.length)];
+        }
+    } else if (avalMoves = 3 && checkCross(board) && count == 0) {
+        count += 1;
+        board[makeCross(board)] = "O";
+        avalMoves = 10;
+        return makeCross(board);
+
     } else {
+        avalMoves += 4;
         let moves = [];
-        let oWin = false;
         let xMoveWin = [];
         let opWin = false;
-        let myWin = false;
         for (let i = 0; i < canMove.length; i++) {
             board[canMove[i]] = "O";
             if (win(board, "O")) {
                 board[canMove[i]] = "";
-                myWin = true;
                 return canMove[i];
             } else {
                 board[canMove[i]] = "X";
@@ -129,15 +140,37 @@ function minimax(canMove, allOptions) {
                 }
             }
         }
-        if (!myWin) {
+        if (opWin) {
             return xMoveWin[Math.floor(Math.random() * xMoveWin.length)];
-        }
-        if (!opWin && !myWin) {
+        } else {
             return moves[Math.floor(Math.random() * moves.length)];
         }
     }
 }
 
+function checkCross(board) {
+    if ((board[1] == "X" && board[3] == "X") || (board[1] == "X" && board[5] == "X") || (board[3] == "X" && board[7] == "X") || (board[5] == "X" && board[7] == "X")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function makeCross(board) {
+    if (board[1] == "X" && board[3] == "X") {
+        board[0] == "O";
+        return 0;
+    } else if (board[1] == "X" && board[5] == "X") {
+        board[2] == "O";
+        return 2;
+    } else if (board[3] == "X" && board[7] == "X") {
+        board[6] == "O";
+        return 6;
+    } else if (board[5] == "X" && board[7] == "X") {
+        board[8] == "O";
+        return 8;
+    }
+}
 
 function win(board, turn) {
     let won = false;
@@ -148,7 +181,6 @@ function win(board, turn) {
         const cellC = board[condition[2]];
 
         if (cellA == "" || cellB == "" || cellC == "") {
-            console.log("continue");
             continue;
         }
         if (cellC == cellB && cellB == cellA && cellA == turn) {
@@ -159,7 +191,6 @@ function win(board, turn) {
         }
     }
     if (!won) {
-        console.log("false");
         return false;
     }
 }
@@ -243,4 +274,6 @@ function restartGame() {
     statusText.textContent = `${currentPlayer}'s turn`;
     cells.forEach(cell => cell.textContent = "");
     running = true;
+    avalMoves = 0;
+    count = 0;
 }
